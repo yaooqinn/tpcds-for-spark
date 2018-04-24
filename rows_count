@@ -1,0 +1,78 @@
+-*-*-*-*-*-*-*-*-*-
+start 
+table: call_center
+42
+------------------
+table: catalog_page
+30000
+------------------
+table: catalog_returns
+143996756
+------------------
+table: catalog_sales
+1439980416
+------------------
+table: customer
+12000000
+------------------
+table: customer_address
+6000000
+------------------
+table: customer_demographics
+1920800
+------------------
+table: date_dim
+73049
+------------------
+table: dbgen_version
+------------------
+table: household_demographics
+7200
+------------------
+table: income_band
+20
+------------------
+table: inventory
+783000000
+------------------
+table: item
+300000
+------------------
+table: promotion
+1500
+------------------
+table: reason
+65
+------------------
+table: ship_mode
+20
+------------------
+table: store
+1002
+------------------
+table: store_returns
+287999764
+------------------
+table: store_sales
+2879987999
+------------------
+table: time_dim
+86400
+------------------
+table: warehouse
+20
+------------------
+table: web_page
+3000
+------------------
+table: web_returns
+71997522
+------------------
+table: web_sales
+720000376
+------------------
+table: web_site
+54
+------------------
+over
+-*-*-*-*-*-*-*-*-*-
