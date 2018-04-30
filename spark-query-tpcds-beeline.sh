@@ -1,28 +1,20 @@
 #!/bin/bash
-bin=`dirname $0`
-bin=`cd $bin;pwd`
-
 source tpcds-env.sh
 
-
 if [ ! -d ${QUERY_SQL_DIR} ];then
-        echo "query sql is not exist,exit.."
-	exit;
+  echo "query sql is not exist,exit.."
+  exit 1
 fi
-
-
-#SPARK_BEELINE_HOME=/home/hadoop/spark-2.1.0-bin-ne-hdp2.7.3
-SPARK_BEELINE_HOME=/home/hadoop/spark-2.1.0-bin-apache-hdp2.7.3
 
 #QUERY_RESULT_BEELINE_DIR=${QUERY_RESULT_DIR}_ne_beeline
 QUERY_RESULT_BEELINE_DIR=${QUERY_RESULT_DIR}_apache_beeline
 
 
 if [ -d $QUERY_RESULT_BEELINE_DIR ];then
-        rm -rf $QUERY_RESULT_BEELINE_DIR
+  rm -rf $QUERY_RESULT_BEELINE_DIR
 fi
 
-mkdir $QUERY_RESULT_BEELINE_DIR
+mkdir -p $QUERY_RESULT_BEELINE_DIR
 
 #unsupported sql ids
 #ids=(5 8 9 10 13 14 18 22 23 24 27 35 36 38 41 44 45 66 67 70 77 80 84 86 87)
@@ -74,8 +66,7 @@ do
     do
 	echo ${file}_$times 查询中
 	sysout="${QUERY_RESULT_BEELINE_DIR}/query${i}_$times.out"   
-        #${SPARK_BEELINE_HOME}/bin/beeline -u 'jdbc:hive2://hadoop712.lt.163.org:10000/tpcds;principal=hive/hadoop712.lt.163.org@TEST.AMBARI.NETEASE.COM;hive.server2.proxy.user=hzyaoqin' -f "$file" >$sysout 2>&1
-        ${SPARK_BEELINE_HOME}/bin/beeline -u 'jdbc:hive2://hadoop712.lt.163.org:10010/tpcds;principal=hive/hadoop712.lt.163.org@TEST.AMBARI.NETEASE.COM;hive.server2.proxy.user=hzyaoqin' -f "$file" >$sysout 2>&1
+        ${SPARK_HOME}/bin/beeline -u 'jdbc:hive2://hadoop712.lt.163.org:10010/tpcds;principal=hive/hadoop712.lt.163.org@TEST.AMBARI.NETEASE.COM;hive.server2.proxy.user=hzyaoqin' -f "$file" >$sysout 2>&1
 	time=`cat $sysout | grep "seconds)" | cut -d "(" -f 2 | cut -d ")" -f 1 | cut -d " " -f 1`
 
         if [ "$time" = "" ];then
@@ -88,4 +79,3 @@ do
     echo "" >> $result
 
 done
-exit 0
