@@ -1,8 +1,6 @@
 #!/bin/bash
-bin=`dirname $0`
-bin=`cd $bin;pwd`
-
+bin="$(cd "$(dirname "$0")";pwd)"
 source $bin/tpcds-env.sh
 
-hive -f $bin/create-table-sql/create-load-carbondata-dimension.sql
-hive -f $bin/create-table-sql/create-load-carbondata-fact.sql
+$SPARK_HOME/bin/spark-sql $@ -f $bin/create-table-sql/create-load-carbondata-dimension.sql
+$SPARK_HOME/bin/spark-sql $@ -f $bin/create-table-sql/create-load-carbondata-fact.sql
