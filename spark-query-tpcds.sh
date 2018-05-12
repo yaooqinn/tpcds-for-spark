@@ -67,7 +67,7 @@ do
 	echo ${file}_$times 查询中
 	sysout="$QUERY_RESULT_DIR/query${i}_$times.out"    
 	$SPARK_HOME/bin/spark-sql --database $TPCDS_DBNAME --name ${file}_$times -f "$file" --silent > $sysout 2>&1
-    	time=`cat $sysout | grep "Time taken:" | grep "CliDriver" | awk -F 'Time taken:' '{print $2}' | awk -F ' ' '{print $1}'`
+    	time=`cat $sysout | grep "Time taken:" | grep "Driver" | awk -F 'Time taken:' '{print $2}' | awk -F ' ' '{print $1}'`
 
         if [ "$time" = "" ];then
 	   echo -n "0," >> $result
